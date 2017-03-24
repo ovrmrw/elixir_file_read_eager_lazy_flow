@@ -29,6 +29,9 @@ defmodule Eager do
     |> IO.inspect
 
     (MyTime.timestamp - start_time) / 1000
+    |> IO.inspect
+
+    :ok
   end
 end
 
@@ -57,6 +60,9 @@ defmodule Lazy do
     |> IO.inspect
 
     (MyTime.timestamp - start_time) / 1000
+    |> IO.inspect
+
+    :ok
   end
 end
 
@@ -87,5 +93,8 @@ defmodule LazyFlow do
     |> IO.inspect
 
     (MyTime.timestamp - start_time) / 1000
+    |> IO.inspect
+
+    :ok
   end
 end
