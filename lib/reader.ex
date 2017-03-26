@@ -24,7 +24,7 @@ defmodule Reader do
 
   def eager(file) when is_bitstring(file) do
     File.stream!(file)
-    |> Enum.map(&decode &1)
+    |> Enum.map(&json_parse &1)
     |> Enum.map(fn person -> 
       %{name: %{first: first}} = person 
       first
@@ -39,7 +39,7 @@ defmodule Reader do
 
   def lazy(file) when is_bitstring(file) do    
     File.stream!(file)
-    |> Stream.map(&decode &1)
+    |> Stream.map(&json_parse &1)
     |> Stream.map(fn person -> 
       %{name: %{first: first}} = person 
       first
@@ -55,7 +55,7 @@ defmodule Reader do
   def flow(file) when is_bitstring(file) do    
     File.stream!(file)
     |> Flow.from_enumerable
-    |> Flow.map(&decode &1)
+    |> Flow.map(&json_parse &1)
     |> Flow.map(fn person -> 
       %{name: %{first: first}} = person 
       first
