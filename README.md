@@ -1,19 +1,27 @@
-# ElixirFileReadEagerLazyFlow
+# elixir_file_read_eager_lazy_flow
 
-**TODO: Add description**
+---
 
-## Installation
+MapReduce with Flow, GenStage
 
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed
-by adding `elixir_file_read_eager_lazy_flow` to your list of dependencies in `mix.exs`:
+## Setup
 
-```elixir
-def deps do
-  [{:elixir_file_read_eager_lazy_flow, "~> 0.1.0"}]
-end
+```
+$ mix do deps.get, compile
 ```
 
-Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
-and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
-be found at [https://hexdocs.pm/elixir_file_read_eager_lazy_flow](https://hexdocs.pm/elixir_file_read_eager_lazy_flow).
+## Run IEx
 
+```
+$ iex -S mix
+```
+
+## Feel how fast Flow is!
+
+```
+$ iex> Reader.read :eager
+or
+$ iex> Reader.read :lazy
+or
+$ iex> Reader.read :flow
+```

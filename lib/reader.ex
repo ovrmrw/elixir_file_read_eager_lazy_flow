@@ -5,14 +5,7 @@ defmodule Reader do
     start_time = timestamp()
 
     file = "RandomUsers/names_#{rows}.json"
-
-    list = 
-      case type do
-        :eager -> eager(file)
-        :lazy -> lazy(file)
-        :flow -> flow(file)
-        _ -> raise "set type as :eager, :lazy, or :flow"
-      end
+    list = map_reduce(type, file)
     
     IO.inspect list
     IO.puts "type: #{type}"
@@ -22,9 +15,9 @@ defmodule Reader do
   end
 
 
-  def eager(file) when is_bitstring(file) do
+  def map_reduce(:eager, file) when is_bitstring(file) do
     File.stream!(file)
-    |> Enum.map(&json_parse &1)
+    |> Enum.map(&json_parse/1)
     |> Enum.map(fn person -> 
       %{name: %{first: first}} = person 
       first
@@ -37,9 +30,9 @@ defmodule Reader do
   end
 
 
-  def lazy(file) when is_bitstring(file) do    
+  def map_reduce(:lazy, file) when is_bitstring(file) do    
     File.stream!(file)
-    |> Stream.map(&json_parse &1)
+    |> Stream.map(&json_parse/1)
     |> Stream.map(fn person -> 
       %{name: %{first: first}} = person 
       first
@@ -52,10 +45,10 @@ defmodule Reader do
   end
 
 
-  def flow(file) when is_bitstring(file) do    
+  def map_reduce(:flow, file) when is_bitstring(file) do    
     File.stream!(file)
     |> Flow.from_enumerable
-    |> Flow.map(&json_parse &1)
+    |> Flow.map(&json_parse/1)
     |> Flow.map(fn person -> 
       %{name: %{first: first}} = person 
       first
