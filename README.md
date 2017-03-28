@@ -2,7 +2,7 @@
 
 ---
 
-MapReduce with Flow, GenStage
+MapReduce concurrently with Flow, GenStage
 
 ## Setup
 
@@ -16,7 +16,7 @@ $ mix do deps.get, compile
 $ iex -S mix
 ```
 
-## Feel how fast Flow is!
+## Feel how fast Flow(GenStage) is!
 
 ```
 $ iex> Reader.read :eager
@@ -25,3 +25,7 @@ $ iex> Reader.read :lazy
 or
 $ iex> Reader.read :flow
 ```
+
+- `:eager` ... single thread
+- `:lazy` ... single thread
+- `:flow` ... multi thread!!
