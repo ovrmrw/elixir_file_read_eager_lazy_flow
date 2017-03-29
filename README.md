@@ -2,7 +2,7 @@
 
 ---
 
-MapReduce concurrently with Flow, GenStage
+MapReduce 300,000 lines JSON file concurrently with Flow, GenStage
 
 ## Setup
 
